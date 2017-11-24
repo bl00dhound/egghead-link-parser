@@ -1,0 +1,15 @@
+{
+  "name": "egghead-link-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "author": "bl00dhound",
+  "license": "MIT",
+  "dependencies": {
+    "ramda": "^0.25.0",
+    "rss-parser": "^2.10.8"
+  }
+}
