@@ -1,5 +1,5 @@
 const { addIndex, last, pluck, pathOr, curry, compose, composeP, split, map, reject, isEmpty,
-        prop, tap, nth, concat, __ } = require('ramda')
+        prop, nth, concat, __ } = require('ramda')
 const axios = require('axios')
 const parser = require('rss-parser')
 const { promisify } = require('util')
@@ -17,9 +17,6 @@ const createFolderForVideos = curry((filePath, data) => {
   const destinationDir = `${dir}/${pathOr('Unnamed', ['feed', 'title'], data)}`
   return createFolderIfExist(destinationDir, data)
 })
-
-const writeListInFileToDestinationFolder = ([destinationDir, data]) =>
-  writeFile(`${destinationDir}/links.json`, JSON.stringify(data), 'utf8')
 
 const parseFeed = ([destinationDir, feed]) => {
   const links = compose(map(prop('url')), pluck('enclosure'), pathOr([], ['feed', 'entries']))(feed)
@@ -50,16 +47,15 @@ const getFile = curry((destinationDir, link, idx) =>
           console.log(`      ${concat(courseDir, fileName)} is saved.`)
           return '\n' + fileName
         })
-        .catch(err => {
+        .catch(() => {
           console.log(`      ${concat(courseDir, fileName)} isn't saved.`)
           return 'fault'
         })
     })
-    // .then(fileData => writeFile(`${destinationDir}/${toString(Date.now())}`, fileData))
-    // .catch(err => {
-    //   console.error(err)
-    //   return true
-    // })
+    .catch(() => {
+      console.log('****** Error: broke link. Go next.')
+      return 'fault'
+    })
 )
 
 const getFilesFromEgghead = ([destinationDir, links]) =>
@@ -71,12 +67,14 @@ const parseRSSFile = filePath =>
     .then(compose(reject(isEmpty), split(/\n/)))
     .then(links => Promise.all(map(composeP(
       getFilesFromEgghead,
-      tap(writeListInFileToDestinationFolder),
       parseFeed,
       createFolderForVideos(filePath),
       getRSS
     ))(links)))
-    // .then(map(parseFeed))
+    .catch(err => {
+      console.log(`****** Error: ${err}`)
+      return 'fault'
+    })
 
 module.exports = {
   parseRSSFile,
