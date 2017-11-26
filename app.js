@@ -6,6 +6,7 @@ const filePath = nth(2, process.argv)
 if (isNil(filePath)) exitWithMessage('Error: enter path to file with list of links.')
 
 parseRSSFile(filePath)
-  .then(console.log)
-  .then(filename => exitWithMessage(`Success: all links saved to file ${filename}`))
+  .then(response => exitWithMessage(`\n Success: saved files: 
+        ${response}`))
+  .catch(err => exitWithMessage(`Error: ${err}`, 1))
 

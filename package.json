@@ -4,11 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./app.js"
+    "start": "node app.js"
   },
   "author": "bl00dhound",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "ramda": "^0.25.0",
     "rss-parser": "^2.10.8"
   }
