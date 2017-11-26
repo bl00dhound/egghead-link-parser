@@ -14,9 +14,9 @@ App receives file with course's links and downloads all videos, sorting them int
 #### To download course(s):
 1. Go to [egghead.io](https://egghead.io)
 2. Go to page of course that you need and right-click on **Rss**:
-    [image](https://github.com/bl00dhound/egghead-link-parser/blob/develop/images/1.jpg)
+    ![image](https://github.com/bl00dhound/egghead-link-parser/blob/develop/images/1.jpg)
 3. Click on `Copy link address` in the menu:
-    [image](https://github.com/bl00dhound/egghead-link-parser/blob/develop/images/2.jpg)
+    ![image](https://github.com/bl00dhound/egghead-link-parser/blob/develop/images/2.jpg)
 4. Create text-file `rss-links.txt` in any folder where you need to download courses.
 5. Paste link that was copied in created text-file. You can add many links of any courses (in text-file those links must begin with new line).
 6. Run application:
