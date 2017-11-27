@@ -4,7 +4,7 @@ This is a node.js application for downloading courses from [egghead.io](https://
 App receives file with course's links and downloads all videos, sorting them into folders according course's name. I've tested this app only on Linux (Ubuntu 16.04).
 
 #### Requirements:
-- just newest version of [node.js](https://nodejs.org) (not older than 7.3.x).
+- just newest version of [node.js](https://nodejs.org) (not older than 8.x.x).
 
 #### To get started:
 - `git clone git@github.com:bl00dhound/egghead-link-parser.git`
